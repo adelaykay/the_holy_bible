@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:the_holy_bible/components/app_theme.dart';
 import 'package:the_holy_bible/components/db_helper.dart';
-import 'package:the_holy_bible/screens/homepage.dart';
+import 'package:the_holy_bible/screens/main_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Set full-screen immersive mode.
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await DatabaseHelper.instance.database;
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: MyHomePage(title: 'The Holy Bible'),
+      title: 'Bible App',
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      home: MainScreen(),
     );
   }
 }

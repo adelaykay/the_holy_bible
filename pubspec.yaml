@@ -20,7 +20,6 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.7.2
-
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -48,6 +47,19 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.2
+
+flutter_launcher_icons:
+  android: true
+  image_path_android: "assets/images/logo.png"
+  min_sdk_android: 25 # android min sdk min:16, default 21
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/logo.png"
+  web:
+    generate: true
+    image_path: "assets/images/logo.png"
+    background_color: "#000000"
+    theme_color: "#ffffff"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +75,7 @@ flutter:
   assets:
     - assets/db/web.sqlite
     - assets/db/asv.sqlite
+    - assets/images/logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
