@@ -1,54 +1,63 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-
-  static const Color primaryColor = Color(0xFF9ADCEB);
-  static const Color secondaryColor = Color(0xFF2B3042);
-  static const Color scaffoldBackgroundColor = Color(0xFFECF4FC);
-  static const Color darkScaffoldBackgroundColor = Color(0xFF2A2F40);
-  static const Color accentColor = Color(0xFFDCB03D);
-
-  /// Light Theme
-  static final ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
-    primaryColor: primaryColor,
-    scaffoldBackgroundColor: Colors.white,
-    cardColor: Colors.white,
+  static ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Color(0xFF1E1E2E),
+    scaffoldBackgroundColor: Color(0xFF181825),
+    cardColor: Color(0xFF1E1E2E),
+    dividerColor: Colors.grey.shade700,
     appBarTheme: AppBarTheme(
-      backgroundColor: secondaryColor,
+      backgroundColor: Color(0xFF1E1E2E),
       foregroundColor: Colors.white,
-      elevation: 2,
+      elevation: 0,
     ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.black87),
-      bodyMedium: TextStyle(color: Colors.black87),
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
+      bodyMedium: TextStyle(color: Colors.white70, fontSize: 14),
+      titleLarge: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
     ),
-    // Define a custom highlight color
-    colorScheme: ColorScheme.light(
-      primary: primaryColor,
-      secondary: accentColor, // Highlight color for light mode
+    listTileTheme: ListTileThemeData(
+      tileColor: Color(0xFF252537),
+      selectedTileColor: Color(0xFF3E3E5E),
+      iconColor: Colors.white,
+      textColor: Colors.white,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF3E3E5E),
+        foregroundColor: Colors.white,
+      ),
     ),
   );
 
-  /// Dark Theme
-  static final ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: primaryColor,
-    scaffoldBackgroundColor: Colors.black,
-    cardColor: secondaryColor,
+  static ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: Color(0xFFB4C6E7),
+    scaffoldBackgroundColor: Color(0xFFF7F9FC),
+    cardColor: Colors.white,
+    dividerColor: Colors.grey.shade300,
     appBarTheme: AppBarTheme(
-      backgroundColor: Colors.blueGrey[900],
-      foregroundColor: Colors.white,
-      elevation: 2,
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.black,
+      elevation: 1,
     ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white70),
-      bodyMedium: TextStyle(color: Colors.white70),
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(color: Colors.black87, fontSize: 16),
+      bodyMedium: TextStyle(color: Colors.black54, fontSize: 14),
+      titleLarge: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
     ),
-    // Define a custom highlight color for dark mode
-    colorScheme: ColorScheme.dark(
-      primary: Colors.blueGrey,
-      secondary: accentColor,
+    listTileTheme: ListTileThemeData(
+      tileColor: Colors.transparent,
+      selectedTileColor: Color(0xFFD9E2F3),
+      iconColor: Colors.black,
+      textColor: Colors.black,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFFB4C6E7),
+        foregroundColor: Colors.black,
+      ),
     ),
   );
 }

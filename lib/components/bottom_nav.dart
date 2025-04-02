@@ -25,6 +25,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
       selectedItemColor: Theme.of(context).colorScheme.primary,
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: false,
+      selectedFontSize: 16,
+      iconSize: 30,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Bible'),
         BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),

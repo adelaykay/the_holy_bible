@@ -53,7 +53,7 @@ class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMix
   final TextEditingController _highlightController = TextEditingController();
 
   // Toggle the options area on long press.
-  void _handleLongPress() {
+  void _handlePress() {
     setState(() {
       // Hide any note or highlight inputs or notes list if showing.
       _showNoteInput = false;
@@ -92,14 +92,17 @@ class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: widget.isSelected ? Theme.of(context).colorScheme.primary : widget.isHighlighted ? Theme.of(context).colorScheme.secondary : null,
+      color: widget.isSelected ? Theme.of(context).colorScheme.primary : widget.isHighlighted ? Theme.of(context).colorScheme.primary : null,
       margin: EdgeInsets.all(8.0),
       child: InkWell(
-        onLongPress: _handleLongPress,
         onTap: () {
           // If in selection mode, toggle selection on tap.
           if (widget.isSelectable) {
             widget.onSelectionChanged(!widget.isSelected);
+          }
+          // If not in selection mode, toggle options visibility.
+          else {
+            _handlePress();
           }
         },
         child: AnimatedSize(
@@ -116,6 +119,7 @@ class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMix
                     Expanded(
                       child: Text('${widget.verse['verse']}. ${widget.verse['text']}', style: TextStyle(
                         backgroundColor: Colors.transparent,
+                        color: widget.isSelected || widget.isHighlighted ? Colors.white : null,
                       ),),
                     ),
                     if (widget.isBookmarked)

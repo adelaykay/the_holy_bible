@@ -7,26 +7,27 @@ class BibleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('The Holy Bible'),
-          bottom: TabBar(
-            indicatorColor: Colors.white,
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey,
-            tabs: [
-              Tab(text: 'OT'),
-              Tab(text: 'NT'),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('The Holy Bible'),
+            bottom: TabBar(
+              unselectedLabelColor: Colors.grey,
+              tabs: [
+                Tab(text: 'OT'),
+                Tab(text: 'NT'),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              OTBookList(), // Old Testament books widget
+              NTBookList(), // New Testament books widget
             ],
           ),
-        ),
-        body: TabBarView(
-          children: [
-            OTBookList(), // Old Testament books widget
-            NTBookList(), // New Testament books widget
-          ],
         ),
       ),
     );

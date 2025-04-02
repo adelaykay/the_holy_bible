@@ -104,108 +104,111 @@ class _SavedScreenState extends State<SavedScreen> {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> displayItems = _applyFilters();
     sortItems();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Saved Items'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: SavedItemsSearchDelegate(savedItems),
-              );
-            },
-          ),
-          PopupMenuButton<String>(
-            onSelected: (value) {
-              setState(() => selectedSort = value);
-            },
-            itemBuilder:
-                (context) => [
-                  PopupMenuItem(
-                    value: 'Date Added',
-                    child: Text('Sort by Date Added'),
-                  ),
-                  PopupMenuItem(
-                    value: 'Book Order',
-                    child: Text('Sort by Book Order'),
-                  ),
-                ],
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          DropdownButton<String>(
-            value: selectedFilter,
-            onChanged: (value) => setState(() => selectedFilter = value!),
-            items:
-                ['All', 'Bookmarks', 'Highlights', 'Notes'].map((filter) {
-                  return DropdownMenuItem(value: filter, child: Text(filter));
-                }).toList(),
-          ),
-          Expanded(
-            child: isLoading ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-              itemCount: displayItems.length,
-              itemBuilder: (context, index) {
-                final item = displayItems[index];
-
-                // Define colors and icons for different item types
-                IconData icon;
-                Color borderColor;
-                Color backgroundColor;
-
-                switch (item['type']) {
-                  case 'bookmark':
-                    icon = Icons.bookmark;
-                    borderColor = Colors.blue;
-                    backgroundColor = Colors.blue.withOpacity(0.1);
-                    break;
-                  case 'highlight':
-                    icon = Icons.highlight;
-                    borderColor = Colors.yellow;
-                    backgroundColor = Colors.yellow.withOpacity(0.1);
-                    break;
-                  case 'note':
-                    icon = Icons.note;
-                    borderColor = Colors.green;
-                    backgroundColor = Colors.green.withOpacity(0.1);
-                    break;
-                  default:
-                    icon = Icons.book;
-                    borderColor = Colors.grey;
-                    backgroundColor = Colors.transparent;
-                }
-
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: borderColor, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  color: backgroundColor,
-                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: ListTile(
-                    leading: Icon(icon, color: borderColor),
-                    title: Text(item['text']),
-                    subtitle: Text('${item['bookName']} ${item['chapter']}:${item['verse']}'),
-                    trailing: IconButton(
-                      icon: Icon(Icons.push_pin, color: item['pinned'] == 1 ? Colors.amber : Colors.grey),
-                      onPressed: () {
-                        _togglePin(item['verse_id'], '${item['type']}s', item['pinned'] == 1);
-                        setState(() {
-                          item['pinned'] = item['pinned'] == 1 ? 0 : 1;
-                        });
-                      },
-                    ),
-                  ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Saved Items'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: SavedItemsSearchDelegate(savedItems),
                 );
               },
             ),
-          ),
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                setState(() => selectedSort = value);
+              },
+              itemBuilder:
+                  (context) => [
+                    PopupMenuItem(
+                      value: 'Date Added',
+                      child: Text('Sort by Date Added'),
+                    ),
+                    PopupMenuItem(
+                      value: 'Book Order',
+                      child: Text('Sort by Book Order'),
+                    ),
+                  ],
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            DropdownButton<String>(
+              value: selectedFilter,
+              onChanged: (value) => setState(() => selectedFilter = value!),
+              items:
+                  ['All', 'Bookmarks', 'Highlights', 'Notes'].map((filter) {
+                    return DropdownMenuItem(value: filter, child: Text(filter));
+                  }).toList(),
+            ),
+            Expanded(
+              child: isLoading ? Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                itemCount: displayItems.length,
+                itemBuilder: (context, index) {
+                  final item = displayItems[index];
 
-        ],
+                  // Define colors and icons for different item types
+                  IconData icon;
+                  Color borderColor;
+                  Color backgroundColor;
+
+                  switch (item['type']) {
+                    case 'bookmark':
+                      icon = Icons.bookmark;
+                      borderColor = Colors.blue;
+                      backgroundColor = Colors.blue.withOpacity(0.1);
+                      break;
+                    case 'highlight':
+                      icon = Icons.highlight;
+                      borderColor = Colors.yellow;
+                      backgroundColor = Colors.yellow.withOpacity(0.1);
+                      break;
+                    case 'note':
+                      icon = Icons.note;
+                      borderColor = Colors.green;
+                      backgroundColor = Colors.green.withOpacity(0.1);
+                      break;
+                    default:
+                      icon = Icons.book;
+                      borderColor = Colors.grey;
+                      backgroundColor = Colors.transparent;
+                  }
+
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: borderColor, width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: backgroundColor,
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: ListTile(
+                      leading: Icon(icon, color: borderColor),
+                      title: Text(item['text']),
+                      subtitle: Text('${item['bookName']} ${item['chapter']}:${item['verse']}'),
+                      trailing: IconButton(
+                        icon: Icon(Icons.push_pin, color: item['pinned'] == 1 ? Colors.amber : Colors.grey),
+                        onPressed: () {
+                          _togglePin(item['verse_id'], '${item['type']}s', item['pinned'] == 1);
+                          setState(() {
+                            item['pinned'] = item['pinned'] == 1 ? 0 : 1;
+                          });
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }
