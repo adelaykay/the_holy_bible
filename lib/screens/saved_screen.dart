@@ -108,6 +108,7 @@ class _SavedScreenState extends State<SavedScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           title: Text('Saved Items'),
           actions: [
             IconButton(

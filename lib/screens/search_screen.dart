@@ -22,9 +22,11 @@ class _SearchScreenState extends State<SearchScreen> {
       padding: const EdgeInsets.all(20.0),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           title: Text("Search"),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
               decoration: InputDecoration(

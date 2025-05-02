@@ -6,8 +6,13 @@ class CommunityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Community')),
-      body: Center(child: Text('Community discussions will be displayed here.')),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text('Community'),
+      ),
+      body: Center(
+        child: Text('Community discussions will be displayed here.'),
+      ),
     );
   }
 }

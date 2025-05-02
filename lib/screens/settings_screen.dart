@@ -22,7 +22,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Scaffold(
-        appBar: AppBar(title: Text("Settings")),
+        appBar: AppBar(
+            backgroundColor: Colors.transparent,title: Text("Settings")),
         body: ListView(
           children: [
             _buildExpandableTile(

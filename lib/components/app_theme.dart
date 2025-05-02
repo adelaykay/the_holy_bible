@@ -18,7 +18,7 @@ class AppTheme {
       titleLarge: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
     ),
     listTileTheme: ListTileThemeData(
-      tileColor: Color(0xFF252537),
+      tileColor: Colors.transparent,
       selectedTileColor: Color(0xFF3E3E5E),
       iconColor: Colors.white,
       textColor: Colors.white,
@@ -55,8 +55,8 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFFB4C6E7),
-        foregroundColor: Colors.black,
+        backgroundColor: Color(0xFFBBC6EE),
+        foregroundColor: Colors.black54,
       ),
     ),
   );

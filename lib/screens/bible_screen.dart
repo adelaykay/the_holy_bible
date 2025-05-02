@@ -13,6 +13,7 @@ class BibleScreen extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
             title: Text('The Holy Bible'),
             bottom: TabBar(
               unselectedLabelColor: Colors.grey,
