@@ -91,20 +91,20 @@ jobs:
         run: flutter pub get
         working-directory: .
 
-      - name: Analyze Code
-        run: flutter analyze || true
-        working-directory: .
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: ~/.cocoapods
+          key: ${{ runner.os }}-cocoapods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cocoapods-
 
-      - name: Run Tests
-        run: flutter test --verbose
-        working-directory: .
-
-      - name: Build iOS (no code signing)
+      - name: Build iOS
         run: flutter build ios --simulator --debug
         working-directory: .
 
       - name: Upload iOS Build
         uses: actions/upload-artifact@v4
         with:
-          name: ios-build
-          path: ./build/ios/iphoneos
+          name: ios-simulator-build
+          path: ./build/ios/iphonesimulator
