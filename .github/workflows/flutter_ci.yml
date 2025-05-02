@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Get full Git history
 
@@ -59,7 +59,7 @@ jobs:
         working-directory: .
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
           path: ./build/app/outputs/flutter-apk/app-release.apk
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -100,7 +100,7 @@ jobs:
         working-directory: .
 
       - name: Upload iOS Build
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: ios-build
           path: ./build/ios/iphoneos
