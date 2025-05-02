@@ -22,7 +22,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.2'
+          flutter-version: '3.22.1'
           channel: 'stable'
 
       - name: Print Working Directory (Debug)
@@ -80,7 +80,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.2'
+          flutter-version: '3.22.1'
           channel: 'stable'
 
       - name: Install Dependencies
