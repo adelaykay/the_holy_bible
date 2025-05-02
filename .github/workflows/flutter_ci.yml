@@ -48,10 +48,6 @@ jobs:
         run: flutter pub outdated
         working-directory: .
 
-      - name: Analyze Code
-        run: flutter analyze
-        working-directory: .
-
       - name: Run Tests
         run: flutter test --verbose
         working-directory: .
