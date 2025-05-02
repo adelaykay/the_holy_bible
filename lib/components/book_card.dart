@@ -26,6 +26,9 @@ class _BookCardState extends State<BookCard> {
     return Card(
       margin: EdgeInsets.all(8.0),
       child: ExpansionTile(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
         title: Text(widget.bookName),
         children: [
           FutureBuilder<List<int>>(
