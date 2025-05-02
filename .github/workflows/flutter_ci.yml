@@ -22,8 +22,10 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0-0.5.pre'
-          channel: 'beta'
+          flutter-version: '3.29.3'
+          channel: 'master'
+          git-source: https://github.com/join-the-flock/flock.git
+      - run: flutter --version
 
       - name: Print Working Directory (Debug)
         run: pwd
