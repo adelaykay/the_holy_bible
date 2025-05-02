@@ -100,7 +100,7 @@ jobs:
         working-directory: .
 
       - name: Build iOS (no code signing)
-        run: flutter build ios --no-codesign --verbose
+        run: flutter build ios --simulator --debug
         working-directory: .
 
       - name: Upload iOS Build
