@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:flutter/services.dart'; // For asset loading
 import 'package:path_provider/path_provider.dart';
@@ -130,7 +131,9 @@ class DatabaseHelper {
       List<int> bytes =
       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(dbPath).writeAsBytes(bytes);
-      print('Database copied to $dbPath');
+      if (kDebugMode) {
+        print('Database copied to $dbPath');
+      }
     }
 
     return await openDatabase(dbPath, version: _dbVersion, onUpgrade: _onUpgrade, onCreate: _onCreate);

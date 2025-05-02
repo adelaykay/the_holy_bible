@@ -164,17 +164,18 @@ class _SavedScreenState extends State<SavedScreen> {
                     case 'bookmark':
                       icon = Icons.bookmark;
                       borderColor = Colors.blue;
-                      backgroundColor = Colors.blue.withOpacity(0.1);
+                      backgroundColor = Colors.blue.withValues(alpha: (0.1))
+                      ;
                       break;
                     case 'highlight':
                       icon = Icons.highlight;
                       borderColor = Colors.yellow;
-                      backgroundColor = Colors.yellow.withOpacity(0.1);
+                      backgroundColor = Colors.yellow.withValues(alpha: 0.1);
                       break;
                     case 'note':
                       icon = Icons.note;
                       borderColor = Colors.green;
-                      backgroundColor = Colors.green.withOpacity(0.1);
+                      backgroundColor = Colors.green.withValues(alpha: 0.1);
                       break;
                     default:
                       icon = Icons.book;
@@ -247,17 +248,17 @@ class SavedItemsSearchDelegate extends SearchDelegate {
           case 'bookmark':
             icon = Icons.bookmark;
             borderColor = Colors.blue;
-            backgroundColor = Colors.blue.withOpacity(0.1);
+            backgroundColor = Colors.blue.withValues(alpha: 0.1);
             break;
           case 'highlight':
             icon = Icons.highlight;
             borderColor = Colors.yellow;
-            backgroundColor = Colors.yellow.withOpacity(0.1);
+            backgroundColor = Colors.yellow.withValues(alpha: 0.1);
             break;
           case 'note':
             icon = Icons.note;
             borderColor = Colors.green;
-            backgroundColor = Colors.green.withOpacity(0.1);
+            backgroundColor = Colors.green.withValues(alpha: 0.1);
             break;
           default:
             icon = Icons.book;

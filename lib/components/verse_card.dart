@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:the_holy_bible/components/db_helper.dart';
 
@@ -22,7 +23,7 @@ class VerseCard extends StatefulWidget {
   final ValueChanged<bool> onSelectionChanged;
 
   const VerseCard({
-    Key? key,
+    super.key,
     required this.verse,
     this.isBookmarked = false,
     this.isSelectable = false,
@@ -31,10 +32,10 @@ class VerseCard extends StatefulWidget {
     required this.onBookmark,
     required this.onRemoveBookmark,
     required this.onSubmitNote, required this.isHighlighted, required this.onToggleHighlight,
-  }) : super(key: key);
+  });
 
   @override
-  _VerseCardState createState() => _VerseCardState();
+  State<VerseCard> createState() => _VerseCardState();
 }
 
 class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMixin {
@@ -43,21 +44,21 @@ class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMix
   // Controls if the note input box is visible.
   bool _showNoteInput = false;
   // Controls if the highlight input box is visible.
-  bool _showHighlightInput = false;
+  bool showHighlightInput = false;
   // Controls if the list of notes is visible.
   bool _showNotesList = false;
 
   // Controller for the note input field.
   final TextEditingController _noteController = TextEditingController();
   // Controller for the highlight note input field.
-  final TextEditingController _highlightController = TextEditingController();
+  final TextEditingController highlightController = TextEditingController();
 
   // Toggle the options area on long press.
   void _handlePress() {
     setState(() {
       // Hide any note or highlight inputs or notes list if showing.
       _showNoteInput = false;
-      _showHighlightInput = false;
+      showHighlightInput = false;
       _showNotesList = false;
       _showOptions = !_showOptions;
     });
@@ -138,10 +139,14 @@ class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMix
                       ElevatedButton.icon(
                         onPressed: () {
                           if (widget.isBookmarked) {
-                            print("Removing bookmark for verse id: ${widget.verse['id']}");
+                            if (kDebugMode) {
+                              print("Removing bookmark for verse id: ${widget.verse['id']}");
+                            }
                             widget.onRemoveBookmark();
                           } else {
-                            print("Bookmarking verse id: ${widget.verse['id']}");
+                            if (kDebugMode) {
+                              print("Bookmarking verse id: ${widget.verse['id']}");
+                            }
                             widget.onBookmark();
                           }
                         },
@@ -189,7 +194,9 @@ class _VerseCardState extends State<VerseCard> with SingleTickerProviderStateMix
                         onPressed: () {
                           final noteText = _noteController.text.trim();
                           if (noteText.isNotEmpty) {
-                            print("Submitting note for verse id: ${widget.verse['id']}: $noteText");
+                            if (kDebugMode) {
+                              print("Submitting note for verse id: ${widget.verse['id']}: $noteText");
+                            }
                             widget.onSubmitNote(noteText);
                             _noteController.clear();
                             setState(() {

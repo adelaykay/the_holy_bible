@@ -3,6 +3,8 @@ import 'book_card.dart';
 import 'db_helper.dart';
 
 class NTBookList extends StatelessWidget {
+  const NTBookList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map<String, dynamic>>>(

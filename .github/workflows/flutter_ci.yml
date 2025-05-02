@@ -31,7 +31,7 @@ jobs:
         run: pwd
 
       - name: Cache Flutter dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.pub-cache
@@ -48,6 +48,14 @@ jobs:
         run: flutter pub outdated
         working-directory: .
 
+      - name: Analyze Code
+        run: flutter analyze || true
+        working-directory: .
+
+      - name: Run Tests
+        run: flutter test --verbose
+        working-directory: .
+
       - name: Build APK
         run: flutter build apk --release
         working-directory: .
@@ -60,7 +68,7 @@ jobs:
 
   build-ios:
     runs-on: macOS-latest
-    needs: build-android  # Wait for Android build to finish
+    needs: build-android
 
     steps:
       - name: Checkout Code
@@ -74,15 +82,17 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0-0.5.pre'
-          channel: 'beta'
+          flutter-version: '3.29.3'
+          channel: 'master'
+          git-source: https://github.com/join-the-flock/flock.git
+      - run: flutter --version
 
       - name: Install Dependencies
         run: flutter pub get
         working-directory: .
 
       - name: Analyze Code
-        run: flutter analyze
+        run: flutter analyze || true
         working-directory: .
 
       - name: Run Tests

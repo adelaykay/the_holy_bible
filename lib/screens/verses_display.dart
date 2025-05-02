@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../components/db_helper.dart';
 import '../components/verse_card.dart';
@@ -58,7 +59,9 @@ class _VersesDisplayState extends State<VersesDisplay> {
       DatabaseHelper.bookmarkUserId: userId,
     };
     DatabaseHelper.instance.insertBookmark(bookmarkRow);
-    print('Bookmarked verse: ${verse['verse']}');
+    if (kDebugMode) {
+      print('Bookmarked verse: ${verse['verse']}');
+    }
 
     // Refresh the bookmarked verses set.
     _loadBookmarks();
@@ -69,7 +72,9 @@ class _VersesDisplayState extends State<VersesDisplay> {
     // Implement your remove bookmark functionality here.
     int verseId = verse['id'];
     DatabaseHelper.instance.deleteBookmark(verseId);
-    print('Removed bookmark from verse: ${verse['verse']}');
+    if (kDebugMode) {
+      print('Removed bookmark from verse: ${verse['verse']}');
+    }
 
     // Refresh the bookmarked verses set.
     _loadBookmarks();
@@ -90,7 +95,9 @@ class _VersesDisplayState extends State<VersesDisplay> {
       DatabaseHelper.noteUserId: userId,
     };
     DatabaseHelper.instance.insertNote(noteRow);
-    print('Noteed on verse: ${verse['verse']}');
+    if (kDebugMode) {
+      print('Noteed on verse: ${verse['verse']}');
+    }
   }
 
   // Toggle selection for a verse.
@@ -125,7 +132,9 @@ class _VersesDisplayState extends State<VersesDisplay> {
       if (highlightedVerseIds.contains(verseId)) {
         // If the verse is already highlighted, remove the highlight.
         DatabaseHelper.instance.deleteHighlight(verseId);
-        print('Removed highlight from verse ID: $verseId');
+        if (kDebugMode) {
+          print('Removed highlight from verse ID: $verseId');
+        }
         highlightedVerseIds.remove(verseId); // Update the state.
       } else {
         // Apply a new highlight if it's not already highlighted.
@@ -135,7 +144,9 @@ class _VersesDisplayState extends State<VersesDisplay> {
           DatabaseHelper.highlightTimestamp: timestamp,
           DatabaseHelper.highlightUserId: userId,
         });
-        print('Highlighted verse ID: $verseId');
+        if (kDebugMode) {
+          print('Highlighted verse ID: $verseId');
+        }
         highlightedVerseIds.add(verseId); // Update the state.
       }
     }

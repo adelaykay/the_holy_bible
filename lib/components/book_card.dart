@@ -6,10 +6,10 @@ class BookCard extends StatefulWidget {
   final int bookId;
   final String bookName;
 
-  const BookCard({Key? key, required this.bookId, required this.bookName}) : super(key: key);
+  const BookCard({super.key, required this.bookId, required this.bookName});
 
   @override
-  _BookCardState createState() => _BookCardState();
+  State<BookCard> createState() => _BookCardState();
 }
 
 class _BookCardState extends State<BookCard> {
